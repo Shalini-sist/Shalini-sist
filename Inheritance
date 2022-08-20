@@ -1,0 +1,21 @@
+class Grandfather(Family):
+    grandfathername = ""
+    def show_grandfather(self):
+        print(self.grandfathername)
+
+class Grandmother(Family):
+    grandmothername = ""
+    def show_grandmother(self):
+        print(self.grandmothername)
+
+
+class granddaughter(Grandfather, Grandmother):
+    def show_grandparent(self):
+        print("Grandfather:",self.grandfathername)
+        print("Grandmother:",self.grandmothername)
+
+S1 = Granddaughter()
+s1.grandfathername = "Rahav"
+s1.Grandmothername = "Bondita"
+S1.show_family()
+s1.show_grandparent()
