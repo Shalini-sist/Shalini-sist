@@ -1,0 +1,15 @@
+# a class method to create a person object by birth year
+@classmethod 
+def from birthyear(cls,name,year):
+    return cls(name,date.today().year-year)
+# a static method to check if a person is adult or not
+@staticmethod
+def isadult(age):
+return age>18
+
+person1 = person('shalini',23)
+person2 = person.frombirthiyear('shalini',2006)
+
+print(person1.age)
+print(person2.age)
+print(person.isadult(24))
