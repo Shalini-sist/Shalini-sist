@@ -1,0 +1,24 @@
+from datatime import date
+class student:
+    fees = 13000
+    def_init_(self,name,city,dob):
+       self.name = name
+       self.city = city
+       self.dob = dob
+    def age(self):
+        current_year = date.today().year
+        return current_year - self.dob
+ a1 = Student("imile","Rajasthan",2003)
+ a2 = Student("Rahav","Pakisthan",2001)
+ print(a1.fees)
+ print(a2.fees)
+ 
+ Student.fees = 10000
+ print(a1.fees)
+ print(a2.fees)
+ 
+ a2.fees = 8000
+ print(a1.fees)
+ print(a2.fees)
+ 
+ 
