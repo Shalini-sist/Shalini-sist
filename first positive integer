@@ -1,0 +1,20 @@
+def first_missing_number(a):
+    if len(a) == 0:
+        return 1
+        
+    a.sort()
+    smallest_int_num = 0
+    
+    for i in range(len(a) - 1):
+
+        if a[i] <= 0 or a[i] == a[i + 1]:
+            continue
+        else:
+            if a[i + 1] - a[i] != 1:
+                smallest_int_num = a[i] + 1
+                return smallest_int_num    
+    if smallest_int_num == 0:
+        smallest_int_num = a[-1] + 1
+    return smallest_int_num
+print(first_missing_number([3,4,-1,1])) 
+
