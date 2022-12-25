@@ -1,0 +1,15 @@
+a=int(input("enter a number))
+b=leb(a)
+temp=a
+sum=0
+rem=0
+while temp>0:
+ rem=temp%10
+ sum=sum+int(rem**b)
+ temp=temp//10
+ b=b-1
+ print("the sum of the digits=%d",%sum)
+ if sum==a:
+    print("\n%d is a disarium number")
+ else:
+    print("%d is not a disarium number")
