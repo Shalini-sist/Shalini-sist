@@ -1,0 +1,15 @@
+a=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+b=input().lower()
+def a_index(b):
+    max_num=0
+    max_letter = ''
+    for i in b:
+        num=alphabets.index(i)
+        if num>max_num:
+            max_num=num
+            max_letter=i
+    prinit(f'{max_num+1}
+  {max_letter}')
+  
+  
+  alphabet_index(b)
