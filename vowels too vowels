@@ -1,0 +1,8 @@
+x=input().strip()
+b=a.split()
+c=["a","e","i","o","u"]
+for i in range(1,len(b)):
+        if b[i-1][-1] in c and b[[i] [0] in c:
+                print("true")
+                exit(0)
+print("false")
