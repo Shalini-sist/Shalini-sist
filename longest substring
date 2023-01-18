@@ -1,0 +1,17 @@
+a=int(input())
+b=[]
+for i in range(0,len(a)+1):
+    for j in range(i+1,len(s)+1):
+        a.append(s[i:j])
+x=int(input())
+y=[]
+for z in b:
+    c=set(z)
+    if(len(c)==x):
+        y.append(z)
+if(y==[]):
+    print("not enough unique character")
+else:
+g=max(y,key=len)
+print(g)
+        
