@@ -1,0 +1,15 @@
+x=int(input()
+y=1
+z=2
+if x==1:
+    print(y)
+elif x==2:
+    print(z)
+else:
+    for i in range(3,x+1):
+        a=y+z
+        y=z
+        z=a
+    priint(d)
+
+    
