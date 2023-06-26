@@ -1,0 +1,172 @@
+from datetime import datetime
+
+# User class representing user profiles
+class User:
+    def __init__(self, name, email, password):
+        self.name = name
+        self.email = email
+        self.password = password
+        self.bookings = []
+    
+    def add_booking(self, booking):
+        self.bookings.append(booking)
+    
+    def get_booking_history(self):
+        return self.bookings
+
+# Movie class representing movie listings
+class Movie:
+    def __init__(self, title, description):
+        self.title = title
+        self.description = description
+        self.showtimes = []
+        self.ratings = []
+    
+    def add_showtime(self, showtime):
+        self.showtimes.append(showtime)
+    
+    def get_showtimes(self):
+        return self.showtimes
+    
+    def add_rating(self, rating):
+        self.ratings.append(rating)
+    
+    def get_ratings(self):
+        return self.ratings
+
+# Showtime class representing showtimes and seat selection
+class Showtime:
+    def __init__(self, movie, start_time, seats):
+        self.movie = movie
+        self.start_time = start_time
+        self.seats = seats
+    
+    def get_available_seats(self):
+        return [seat for seat in self.seats if not seat.is_booked]
+    
+    def book_seat(self, seat):
+        if seat in self.seats and not seat.is_booked:
+            seat.book()
+            return True
+        return False
+
+# Seat class representing seats available for booking
+class Seat:
+    def __init__(self, seat_number):
+        self.seat_number = seat_number
+        self.is_booked = False
+    
+    def is_booked(self):
+        return self.is_booked
+    
+    def book(self):
+        self.is_booked = True
+
+# Payment class representing payment options
+class Payment:
+    def __init__(self, method, amount):
+        self.method = method
+        self.amount = amount
+    
+    def process_payment(self):
+        # Logic to process the payment using the selected method and amount
+        print("Payment processed successfully.")
+
+# Booking class representing user bookings
+class Booking:
+    def __init__(self, user, showtime, seat, payment):
+        self.user = user
+        self.showtime = showtime
+        self.seat = seat
+        self.payment = payment
+        self.booking_time = datetime.now()
+    
+    def get_booking_details(self):
+        return {
+            'user': self.user.name,
+            'movie': self.showtime.movie.title,
+            'showtime': self.showtime.start_time,
+            'seat': self.seat.seat_number,
+            'payment': self.payment.method,
+            'booking_time': self.booking_time
+        }
+
+# Rating class representing movie ratings and reviews
+class Rating:
+    def __init__(self, user, movie, rating, review):
+        self.user = user
+        self.movie = movie
+        self.rating = rating
+        self.review = review
+    
+    def get_rating_details(self):
+        return {
+            'user': self.user.name,
+            'movie': self.movie.title,
+            'rating': self.rating,
+            'review': self.review
+        }
+
+# Example usage
+if __name__ == '__main__':
+    # Create users
+    user1 = User('John Doe', 'john@example.com', 'password123')
+    user2 = User('Jane Smith', 'jane@example.com', 'password456')
+
+    # Create movies
+    movie1 = Movie('Movie 1', 'Description 1')
+    movie2 = Movie('Movie 2', 'Description 2')
+
+# Add movies to the database
+movies = [movie1, movie2]
+
+# Create showtimes for movies
+showtime1 = Showtime(movie1, datetime(2023, 6, 27, 18, 0), [
+    Seat('A1'), Seat('A2'), Seat('A3'), Seat('B1'), Seat('B2'), Seat('B3')
+])
+showtime2 = Showtime(movie1, datetime(2023, 6, 27, 20, 0), [
+    Seat('C1'), Seat('C2'), Seat('C3'), Seat('D1'), Seat('D2'), Seat('D3')
+])
+showtime3 = Showtime(movie2, datetime(2023, 6, 28, 19, 30), [
+    Seat('E1'), Seat('E2'), Seat('E3'), Seat('F1'), Seat('F2'), Seat('F3')
+])
+
+movie1.add_showtime(showtime1)
+movie1.add_showtime(showtime2)
+movie2.add_showtime(showtime3)
+
+# Perform booking
+selected_showtime = movie1.get_showtimes()[0]
+selected_seat = selected_showtime.get_available_seats()[0]
+payment = Payment('Credit Card', 10.99)
+booking = Booking(user1, selected_showtime, selected_seat, payment)
+user1.add_booking(booking)
+selected_showtime.book_seat(selected_seat)
+
+# Add ratings and reviews
+rating1 = Rating(user1, movie1, 4.5, 'Great movie!')
+rating2 = Rating(user2, movie2, 3.8, 'Average movie.')
+movie1.add_rating(rating1)
+movie2.add_rating(rating2)
+
+# Print booking details
+print("Booking Details:")
+for booking in user1.get_booking_history():
+    details = booking.get_booking_details()
+    print(f"Movie: {details['movie']}")
+    print(f"Showtime: {details['showtime']}")
+    print(f"Seat: {details['seat']}")
+    print(f"Payment: {details['payment']}")
+    print(f"Booking Time: {details['booking_time']}\n")
+
+# Print movie ratings and reviews
+print("Movie Ratings and Reviews:")
+for movie in movies:
+    ratings = movie.get_ratings()
+    print(f"Movie: {movie.title}")
+    for rating in ratings:
+        details = rating.get_rating_details()
+        print(f"User: {details['user']}")
+        print(f"Rating: {details['rating']}")
+        print(f"Review: {details['review']}")
+    print("\n")
